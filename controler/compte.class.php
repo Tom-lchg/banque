@@ -12,6 +12,18 @@ class CompteControler extends AbstractController {
     {
         if(!empty($_GET['action'])) {
             switch($_GET['action']) {
+                case 'openAccount': {
+                    if(isset($_POST['ouvrir_compte'])) {
+                        $this->modeleCompte->create(new CompteEntity(0, $_POST['numeroCompte'], $_POST['solde'], $_POST['typeDeCompte'], date('y-m-d-h-m-s'), $_SESSION['idClient']));
+                        $_SESSION['hasAccount'] = true;
+                        header('location: ./index.php');
+                        break;
+                    }
+
+                    $this->render('ouvrir-compte');
+                    break;
+                }
+
                 case 'solde': {
                     $compte = $this->modeleCompte->findClientCompte($_SESSION['idClient']);
                     $this->render('solde', [

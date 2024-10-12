@@ -55,6 +55,7 @@ class ClientControler extends AbstractController{
                 if($mdp === $client->getMdp()) {
                     $_SESSION['idClient'] = $client->getId();
                     $_SESSION['emailClient'] = $client->getEmail();
+                    $this->modeleClient->hasAccount();
                     header('location: ./index.php');
                 }
             }

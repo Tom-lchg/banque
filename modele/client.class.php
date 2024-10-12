@@ -36,4 +36,21 @@ class ClientModele extends Modele{
 
         return $clients;
     }
+
+    public function hasAccount()
+    {
+        $requete = "SELECT * FROM comptebancaire WHERE clientId = :clientId";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->execute([":clientId" => $_SESSION['idClient']]);
+        
+        $asAnAccount = $stmt->fetch();
+        
+        if ($asAnAccount !== false) {
+            $_SESSION['hasAccount'] = true;
+            return true;
+        } else {
+            $_SESSION['hasAccount'] = false;
+            return false;
+        }
+    }
 }

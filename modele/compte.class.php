@@ -1,6 +1,19 @@
 <?php
 
 class CompteModele extends Modele {
+    public function create(CompteEntity $compte)
+    {
+        $r = "INSERT into comptebancaire (compteId, numeroCompte, solde, typeDeCompte, dateOuverture, clientId) VALUES (0, :numeroCompte, :solde, :typeDeCompte, :dateOuverture, :clientId)";
+        $stmt = $this->pdo->prepare($r);
+        $stmt->execute([
+            ":numeroCompte" => $compte->getNumeroCompte(),
+            ":solde" => $compte->getSolde(),
+            ":typeDeCompte" => $compte->getType(),
+            ":dateOuverture" => $compte->getDateOuverture(),
+            ":clientId" => $compte->getClientId(),
+        ]);
+    }
+
     public function getAll()
     {
         $comptesQuery = $this->pdo->query("

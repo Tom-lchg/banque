@@ -15,18 +15,22 @@
         <a class="navbar-brand" href="./index.php">Home</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="./index.php?action=solde">Solde</a>
-                <a class="nav-item nav-link" href="./index.php?action=virement">Virement</a>
-                <a class="nav-item nav-link" href="./index.php?action=depot">Dépôt</a>
-                <a class="nav-item nav-link" href="./index.php?action=retrait">Retrait</a>
-                <a class="nav-item nav-link" href="./index.php?action=inscription">Inscription</a>
+
+                <?php if(isset($_SESSION['hasAccount']) && $_SESSION['hasAccount']): ?>
+                    <a class="nav-item nav-link active" href="./index.php?action=solde">Solde</a>
+                    <a class="nav-item nav-link" href="./index.php?action=virement">Virement</a>
+                    <a class="nav-item nav-link" href="./index.php?action=depot">Dépôt</a>
+                    <a class="nav-item nav-link" href="./index.php?action=retrait">Retrait</a>
+                <?php else: ?>
+                    <a class="nav-item nav-link" href="./index.php?action=openAccount">Ouvrir un compte</a>
+                <?php endif; ?>
 
                 <?php if(isset($_SESSION['idClient'])): ?>
                     <a class="nav-item nav-link" href="./index.php?action=deconnexion">deconnexion (<?= $_SESSION['emailClient'] ?>)</a>
-                <?php else: ?>
+                    <?php else: ?>
+                    <a class="nav-item nav-link" href="./index.php?action=inscription">Nouveau client</a>
                     <a class="nav-item nav-link" href="./index.php?action=connexion">Connexion</a>
                 <?php endif; ?>
-
             </div>
         </div>
     </nav>
