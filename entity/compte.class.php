@@ -20,7 +20,7 @@ class CompteEntity {
 
     // getter
     public function getId() { return $this->id; }
-    public function geNumeroCompte() { return $this->numero; }
+    public function getNumeroCompte() { return $this->numero; }
     public function getSolde() { return $this->solde; }
     public function getType() { return $this->typeDeCompte; }
     public function getDateOuverture() { return $this->dateOuverture; }

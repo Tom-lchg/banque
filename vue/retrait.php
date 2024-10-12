@@ -5,4 +5,8 @@
         <input type="number" name="montant" />
         <input type="submit" name="retrait" value="Retirer">
     </form>
+
+    <?php if(isset($_GET['msg'])): ?>
+        <p>Solde négatif impossible</p>
+    <?php endif; ?>
 </section>
