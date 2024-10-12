@@ -19,11 +19,13 @@
                 <a class="nav-item nav-link" href="./index.php?action=virement">Virement</a>
                 <a class="nav-item nav-link" href="./index.php?action=depot">Dépôt</a>
                 <a class="nav-item nav-link" href="./index.php?action=inscription">Inscription</a>
+
                 <?php if(isset($_SESSION['idClient'])): ?>
                     <a class="nav-item nav-link" href="./index.php?action=deconnexion">deconnexion</a>
                 <?php else: ?>
                     <a class="nav-item nav-link" href="./index.php?action=connexion">Connexion</a>
                 <?php endif; ?>
+                
             </div>
         </div>
     </nav>

@@ -32,6 +32,11 @@ class ClientControler extends AbstractController{
                     $this->render('connexion');
                     break;
                 }
+
+                case 'deconnexion': {
+                    $this->deconnexion();
+                    header('location: ./index.php');
+                }
             }
         }
     }
@@ -44,7 +49,7 @@ class ClientControler extends AbstractController{
     public function connexion($email, $mdp)
     {
         $clients = $this->modeleClient->getAll();
-                
+
         foreach($clients as $client) {
             if($email === $client->getEmail()) {
                 if($mdp === $client->getMdp()) {
@@ -54,5 +59,10 @@ class ClientControler extends AbstractController{
                 }
             }
         }
+    }
+
+    public function deconnexion()
+    {
+        session_destroy();
     }
 }
