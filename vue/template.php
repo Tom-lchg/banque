@@ -21,13 +21,13 @@
                     <a class="nav-item nav-link" href="./index.php?action=virement">Virement</a>
                     <a class="nav-item nav-link" href="./index.php?action=depot">Dépôt</a>
                     <a class="nav-item nav-link" href="./index.php?action=retrait">Retrait</a>
-                <?php else: ?>
+                <?php elseif(isset($_SESSION['hasAccount']) && $_SESSION['hasAccount'] === false): ?>
                     <a class="nav-item nav-link" href="./index.php?action=openAccount">Ouvrir un compte</a>
                 <?php endif; ?>
 
                 <?php if(isset($_SESSION['idClient'])): ?>
                     <a class="nav-item nav-link" href="./index.php?action=deconnexion">deconnexion (<?= $_SESSION['emailClient'] ?>)</a>
-                    <?php else: ?>
+                <?php else: ?>
                     <a class="nav-item nav-link" href="./index.php?action=inscription">Nouveau client</a>
                     <a class="nav-item nav-link" href="./index.php?action=connexion">Connexion</a>
                 <?php endif; ?>

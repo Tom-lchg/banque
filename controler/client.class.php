@@ -17,7 +17,7 @@ class ClientControler extends AbstractController{
                 case 'inscription': {
                     if(!empty($_POST)) {
                         $this->inscription($_POST);
-                        header('location: ./index.php');
+                        header('location: ./index.php?action=connexion');
                         break;
                     }
                     $this->render('inscription');
@@ -27,6 +27,8 @@ class ClientControler extends AbstractController{
                 case 'connexion': {
                     if(!empty($_POST)) {
                         $this->connexion($_POST['email'], $_POST['mdp']);
+                        $this->modeleClient->hasAccount();
+                        header('location: ./index.php');
                         break;
                     }
                     $this->render('connexion');
@@ -36,6 +38,7 @@ class ClientControler extends AbstractController{
                 case 'deconnexion': {
                     $this->deconnexion();
                     header('location: ./index.php');
+                    break;
                 }
             }
         }
@@ -64,6 +67,7 @@ class ClientControler extends AbstractController{
 
     public function deconnexion()
     {
+        $_SESSION = [];
         session_destroy();
     }
 }

@@ -43,9 +43,9 @@ class ClientModele extends Modele{
         $stmt = $this->pdo->prepare($requete);
         $stmt->execute([":clientId" => $_SESSION['idClient']]);
         
-        $asAnAccount = $stmt->fetch();
+        $hasAnAccount = $stmt->fetch();
         
-        if ($asAnAccount !== false) {
+        if ($hasAnAccount !== false) {
             $_SESSION['hasAccount'] = true;
             return true;
         } else {
