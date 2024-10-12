@@ -1,6 +1,6 @@
 <section id="connexion">
     <h2>Connexion</h2>
-    <form method="POST" action="connexion.php">
+    <form method="POST" action="./index.php?action=connexion">
     <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="Email"

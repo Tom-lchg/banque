@@ -1,8 +1,5 @@
 <?php 
 
-// include du modele & entity client
-include './modele/client.class.php';
-
 class ClientControler extends AbstractController{
     private $pdo;
     private $modeleClient;
@@ -17,20 +14,45 @@ class ClientControler extends AbstractController{
     {
         if(!empty($_GET['action'])) {
             switch ($_GET['action']) {
-                case 'ajouter': {
-                    $this->render('inscription');
+                case 'inscription': {
                     if(!empty($_POST)) {
-                        $this->ajouter($_POST);
+                        $this->inscription($_POST);
                         header('location: ./index.php');
                         break;
                     }
+                    $this->render('inscription');
+                    break;
+                }
+
+                case 'connexion': {
+                    if(!empty($_POST)) {
+                        $this->connexion($_POST['email'], $_POST['mdp']);
+                        break;
+                    }
+                    $this->render('connexion');
+                    break;
                 }
             }
         }
     }
 
-    public function ajouter($data)
+    public function inscription($data)
     {
         $this->modeleClient->ajouter(new ClientEntity(0, $data['nom'], $data['prenom'], $data['telephone'], $data['email'], $data['mdp'], date('y-d-m H-i-s')));
+    }
+
+    public function connexion($email, $mdp)
+    {
+        $clients = $this->modeleClient->getAll();
+                
+        foreach($clients as $client) {
+            if($email === $client->getEmail()) {
+                if($mdp === $client->getMdp()) {
+                    $_SESSION['idClient'] = $client->getId();
+                    $_SESSION['emailClient'] = $client->getEmail();
+                    header('location: ./index.php');
+                }
+            }
+        }
     }
 }

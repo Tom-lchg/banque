@@ -1,9 +1,5 @@
 <?php 
 
-// include client entity
-include './entity/client.class.php';
-include './modele/modele.class.php';
-
 class ClientModele extends Modele{
     public function ajouter(ClientEntity $client): void
     {
@@ -18,5 +14,26 @@ class ClientModele extends Modele{
             ":mdp" => $client->getMdp(),
             ":dateCreation" => $client->getDateCreation(),
         ]);
+    }
+
+    public function getAll()
+    {
+        $clientsData = $this->pdo->query('SELECT * FROM client')->fetchAll();
+        $clients = [];
+
+        foreach ($clientsData as $clientData) {
+            $client = new ClientEntity(
+                $clientData['clientId'],
+                $clientData['nom'],
+                $clientData['prenom'],
+                $clientData['telephone'],   
+                $clientData['email'],
+                $clientData['mdp'],
+                $clientData['dateCreation']
+            );
+            $clients[] = $client;
+        }
+
+        return $clients;
     }
 }

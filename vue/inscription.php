@@ -1,6 +1,6 @@
 <section id="inscription">
     <h2>Inscription</h2>
-    <form method="POST" action="./index.php?action=ajouter">
+    <form method="POST" action="">
     <div class="form-group">
     <label for="nom">Nom</label>
     <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
