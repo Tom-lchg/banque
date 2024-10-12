@@ -1,4 +1,5 @@
 <section id="connexion">
+    <h2>Connexion</h2>
     <form method="POST" action="connexion.php">
     <div class="form-group">
     <label for="email">Email</label>
